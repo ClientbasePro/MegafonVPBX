@@ -27,8 +27,11 @@ function GetMegafonVPBXUsers($search) {
 	    // если нет условий поиска, возвращаем полный массив всех
 	  if (!$search) return $answer;
 	  else {
-		foreach ($answer as $index=>$abonent) foreach ($search as $key=>$value) if ($value!=$abonent[$key]) { unset($answer[$index]); break; }
-		return $answer;  
+	    foreach ($answer as $index=>$abonent) { foreach ($search as $key=>$value) if ($value!=$abonent[$key]) { unset($answer[$index]); break; }}
+		if ($answer) { 
+		  foreach ($answer as $abonent) $tmp[] = $abonent; 
+		  return $tmp; 
+		}
 	  }
 	}
   }
